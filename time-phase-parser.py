@@ -22,29 +22,29 @@ while(1):
 	end = []
 	for i, item in enumerate(result['sentences'][0]['words']):
 		if flag == 1:
+			x = ['last', 'this', 'next', 'every']
 			if item[1]['PartOfSpeech'] == 'IN':
 				start.append(count)
 				flag = 0
-			x = ['last', 'this', 'next', 'every']
-			if item[1]['Lemma'] in x:
+			elif item[1]['Lemma'] in x:
 				start.append(count)
 				flag = 0
-		if flag == 0:
+		elif flag == 0:
 			if item[1]['PartOfSpeech'] == 'CD':
 				end.append(count)
 				flag = 1
-			if item[1]['PartOfSpeech'] == 'NNP' and result['sentences'][0]['words'][i+1][1]['PartOfSpeech'] != 'NN':
+			elif item[1]['PartOfSpeech'] == 'NNP' and result['sentences'][0]['words'][i+1][1]['PartOfSpeech'] != 'NN':
 				end.append(count)
 				flag = 1
-			if item[1]['PartOfSpeech'] == 'NN' and result['sentences'][0]['words'][i-1][1]['PartOfSpeech'] != 'NNP':
+			elif item[1]['PartOfSpeech'] == 'NN':
 				end.append(count)
 				flag = 1
 		count = count + 1
 
-	#print start
-	#print end
+	# print start
+	# print end
 	print "-----"
-	print "Input : ", user_input
+	# print "Input : ", user_input
 	for i in range(0,len(start)):
 		time =  result['sentences'][0]['text'].split(' ')[start[i]:end[i]+1]
 		time_type = result['sentences'][0]['text'].split(' ')[end[i]]
@@ -53,9 +53,8 @@ while(1):
 	print "-----"
 
 
-# I usually get up at 5:00 in the early morning on Sunday in summer at school
+# Input: I usually get up at 5:00 in the early morning every Sunday morning in summer at school
 #-----
-# Input :  I usually get up at 5:00 in the early morning on Sunday in summer at school
 # at 5:00
 # in the early morning
 # on Sunday
