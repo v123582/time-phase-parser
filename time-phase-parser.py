@@ -51,4 +51,13 @@ while(1):
 		if nlp.parse(time_type)['sentences'][0]['words'][0][1]['NamedEntityTag'] in ['DATE', 'TIME']:
 			print ' '.join(time)
 	print "-----"
-	# I usually get up at 5:00 in the early morning on Sunday in summer at school
+
+
+# I usually get up at 5:00 in the early morning on Sunday in summer at school
+#-----
+# Input :  I usually get up at 5:00 in the early morning on Sunday in summer at school
+# at 5:00
+# in the early morning
+# on Sunday
+# in summer
+#------
