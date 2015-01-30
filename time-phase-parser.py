@@ -36,7 +36,10 @@ while(1):
 			elif item[1]['PartOfSpeech'] == 'NNP' and result['sentences'][0]['words'][i+1][1]['PartOfSpeech'] != 'NN':
 				end.append(count)
 				flag = 1
-			elif item[1]['PartOfSpeech'] == 'NN':
+			elif item[1]['PartOfSpeech'] == 'NNP' and result['sentences'][0]['words'][i+1][1]['PartOfSpeech'] != 'NNS':
+				end.append(count)
+				flag = 1
+			elif item[1]['PartOfSpeech'] == 'NN' or  item[1]['PartOfSpeech'] == 'NNS' :
 				end.append(count)
 				flag = 1
 		count = count + 1
@@ -48,7 +51,7 @@ while(1):
 	for i in range(0,len(start)):
 		time =  result['sentences'][0]['text'].split(' ')[start[i]:end[i]+1]
 		time_type = result['sentences'][0]['text'].split(' ')[end[i]]
-		if nlp.parse(time_type)['sentences'][0]['words'][0][1]['NamedEntityTag'] in ['DATE', 'TIME']:
+		if nlp.parse(time_type)['sentences'][0]['words'][0][1]['NamedEntityTag'] in ['NUMBER', 'DATE', 'TIME']:
 			print ' '.join(time)
 	print "-----"
 
